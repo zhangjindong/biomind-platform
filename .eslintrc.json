@@ -65,6 +65,69 @@
                 "onlyDependOnLibsWithTags": [
                   "domain:shared"
                 ]
+              },
+              {
+                "sourceTag": "domain:user",
+                "onlyDependOnLibsWithTags": [
+                  "domain:user",
+                  "domain:shared"
+                ]
+              },
+              {
+                "sourceTag": "domain:dept",
+                "onlyDependOnLibsWithTags": [
+                  "domain:dept",
+                  "domain:shared"
+                ]
+              },
+              {
+                "sourceTag": "domain:user",
+                "onlyDependOnLibsWithTags": [
+                  "domain:user",
+                  "domain:shared"
+                ]
+              },
+              {
+                "sourceTag": "domain:dept",
+                "onlyDependOnLibsWithTags": [
+                  "domain:dept",
+                  "domain:shared"
+                ]
+              },
+              {
+                "sourceTag": "domain:user",
+                "onlyDependOnLibsWithTags": [
+                  "domain:user",
+                  "domain:shared"
+                ]
+              },
+              {
+                "sourceTag": "domain:dept",
+                "onlyDependOnLibsWithTags": [
+                  "domain:dept",
+                  "domain:shared"
+                ]
+              },
+              {
+                "sourceTag": "domain:home-list",
+                "onlyDependOnLibsWithTags": [
+                  "domain:home-list",
+                  "domain:shared"
+                ]
+              },
+              {
+                "sourceTag": "domain:news",
+                "onlyDependOnLibsWithTags": [
+                  "domain:news",
+                  "domain:shared"
+                ]
+              },
+              {
+                "sourceTag": "domain:financial",
+                "onlyDependOnLibsWithTags": [
+                  "domain:financial",
+                  "domain:shared"
+                ]
               }
             ]
           }

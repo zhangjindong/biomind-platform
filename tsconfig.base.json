@@ -14,7 +14,68 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@biomind-platform/user/domain": ["libs/user/domain/src/index.ts"],
+      "@biomind-platform/dept/domain": ["libs/dept/domain/src/index.ts"],
+      "@biomind-platform/user/feature-home-list": [
+        "libs/user/feature-home-list/src/index.ts"
+      ],
+      "@biomind-platform/dept/feature-home-list": [
+        "libs/dept/feature-home-list/src/index.ts"
+      ],
+      "@biomind-platform/news/domain": ["libs/news/domain/src/index.ts"],
+      "@biomind-platform/financial/domain": [
+        "libs/financial/domain/src/index.ts"
+      ],
+      "@biomind-platform/news/feature-list": [
+        "libs/news/feature-list/src/index.ts"
+      ],
+      "@biomind-platform/financial/feature-list": [
+        "libs/financial/feature-list/src/index.ts"
+      ],
+      "@biomind-platform/shared/ui/ui-blog": [
+        "libs/shared/ui/ui-blog/src/index.ts"
+      ],
+      "@biomind-platform/shared/ui/ui-contact": [
+        "libs/shared/ui/ui-contact/src/index.ts"
+      ],
+      "@biomind-platform/shared/ui/ui-content": [
+        "libs/shared/ui/ui-content/src/index.ts"
+      ],
+      "@biomind-platform/shared/ui/ui-cta": [
+        "libs/shared/ui/ui-cta/src/index.ts"
+      ],
+      "@biomind-platform/shared/ui/ui-gallery": [
+        "libs/shared/ui/ui-gallery/src/index.ts"
+      ],
+      "@biomind-platform/shared/ui/ui-hero": [
+        "libs/shared/ui/ui-hero/src/index.ts"
+      ],
+      "@biomind-platform/shared/ui/ui-layout": [
+        "libs/shared/ui/ui-layout/src/index.ts"
+      ],
+      "@biomind-platform/shared/ui/ui-pricing": [
+        "libs/shared/ui/ui-pricing/src/index.ts"
+      ],
+      "@biomind-platform/shared/ui/ui-statistic": [
+        "libs/shared/ui/ui-statistic/src/index.ts"
+      ],
+      "@biomind-platform/shared/util/util-cornerstone": [
+        "libs/shared/util/util-cornerstone/src/index.ts"
+      ],
+      "@biomind-platform/shared/util/util-d3": [
+        "libs/shared/util/util-d3/src/index.ts"
+      ],
+      "@biomind-platform/shared/util/util-pdf": [
+        "libs/shared/util/util-pdf/src/index.ts"
+      ],
+      "@biomind-platform/shared/util/util-socket": [
+        "libs/shared/util/util-socket/src/index.ts"
+      ],
+      "@biomind-platform/shared/util/util-tools": [
+        "libs/shared/util/util-tools/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

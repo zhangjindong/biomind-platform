@@ -25,6 +25,79 @@
     "management-e2e": {
       "tags": [],
       "implicitDependencies": ["management"]
+    },
+    "user-domain": {
+      "tags": ["domain:user", "type:domain-logic"]
+    },
+    "dept-domain": {
+      "tags": ["domain:dept", "type:domain-logic"]
+    },
+    "user-feature-home-list": {
+      "tags": ["domain:user", "type:feature"]
+    },
+    "mobile": {
+      "tags": []
+    },
+    "mobile-e2e": {
+      "tags": [],
+      "implicitDependencies": []
+    },
+    "dept-feature-home-list": {
+      "tags": ["domain:dept", "type:feature"]
+    },
+    "news-domain": {
+      "tags": ["domain:news", "type:domain-logic"]
+    },
+    "financial-domain": {
+      "tags": ["domain:financial", "type:domain-logic"]
+    },
+    "news-feature-list": {
+      "tags": ["domain:news", "type:feature"]
+    },
+    "financial-feature-list": {
+      "tags": ["domain:financial", "type:feature"]
+    },
+    "shared-ui-ui-blog": {
+      "tags": ["domain:shared", "type:ui"]
+    },
+    "shared-ui-ui-contact": {
+      "tags": ["domain:shared", "type:ui"]
+    },
+    "shared-ui-ui-content": {
+      "tags": ["domain:shared", "type:ui"]
+    },
+    "shared-ui-ui-cta": {
+      "tags": ["domain:shared", "type:ui"]
+    },
+    "shared-ui-ui-gallery": {
+      "tags": ["domain:shared", "type:ui"]
+    },
+    "shared-ui-ui-hero": {
+      "tags": ["domain:shared", "type:ui"]
+    },
+    "shared-ui-ui-layout": {
+      "tags": ["domain:shared", "type:ui"]
+    },
+    "shared-ui-ui-pricing": {
+      "tags": ["domain:shared", "type:ui"]
+    },
+    "shared-ui-ui-statistic": {
+      "tags": ["domain:shared", "type:ui"]
+    },
+    "shared-util-util-cornerstone": {
+      "tags": ["domain:shared", "type:util"]
+    },
+    "shared-util-util-d3": {
+      "tags": ["domain:shared", "type:util"]
+    },
+    "shared-util-util-pdf": {
+      "tags": ["domain:shared", "type:util"]
+    },
+    "shared-util-util-socket": {
+      "tags": ["domain:shared", "type:util"]
+    },
+    "shared-util-util-tools": {
+      "tags": ["domain:shared", "type:util"]
     }
   }
 }

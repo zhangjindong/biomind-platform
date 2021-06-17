@@ -1,0 +1,10 @@
+<h1>news-list</h1>
+
+<table class="table">
+  <tr *ngFor="let news of newsList$ | async">
+    <td>{{news.id}}</td>
+    <td>{{news.name}}</td>
+    <td>{{news.description}}</td>
+  </tr>
+</table>
+

@@ -1,0 +1,44 @@
+<section class="text-gray-600 body-font overflow-hidden">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-20">
+      <h1
+        class="sm:text-4xl text-3xl font-medium title-font mb-2 text-gray-900"
+      >
+        部门列表
+      </h1>
+
+      <table class="table-auto w-full text-left whitespace-no-wrap">
+        <thead>
+          <tr>
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl"
+            >
+              ID
+            </th>
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl"
+            >
+              Name
+            </th>
+            <th
+              class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl"
+            >
+              Description
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dept of deptList$ | async">
+            <td class="border-t-2 border-gray-200 px-4 py-3">{{ dept.id }}</td>
+            <td class="border-t-2 border-gray-200 px-4 py-3">
+              {{ dept.name }}
+            </td>
+            <td class="border-t-2 border-gray-200 px-4 py-3">
+              {{ dept.description }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
