@@ -27,5 +27,6 @@ module.exports = {
     '<rootDir>/libs/shared/ui-hero',
     '<rootDir>/libs/shared/ui-statistic',
     '<rootDir>/libs/shared/ui-pricing',
+    '<rootDir>/apps/background-rest',
   ],
 };

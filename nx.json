@@ -19,21 +19,27 @@
     }
   },
   "projects": {
+    "background-rest": {
+      "tags": ["background"]
+    },
+    "dept-domain": {
+      "tags": ["domain:dept", "type:domain-logic"]
+    },
+    "dept-feature-home-list": {
+      "tags": ["domain:dept", "type:feature"]
+    },
+    "financial-domain": {
+      "tags": ["domain:financial", "type:domain-logic"]
+    },
+    "financial-feature-list": {
+      "tags": ["domain:financial", "type:feature"]
+    },
     "management": {
       "tags": []
     },
     "management-e2e": {
       "tags": [],
       "implicitDependencies": ["management"]
-    },
-    "user-domain": {
-      "tags": ["domain:user", "type:domain-logic"]
-    },
-    "dept-domain": {
-      "tags": ["domain:dept", "type:domain-logic"]
-    },
-    "user-feature-home-list": {
-      "tags": ["domain:user", "type:feature"]
     },
     "mobile": {
       "tags": [],
@@ -43,20 +49,11 @@
       "tags": [],
       "implicitDependencies": ["mobile"]
     },
-    "dept-feature-home-list": {
-      "tags": ["domain:dept", "type:feature"]
-    },
     "news-domain": {
       "tags": ["domain:news", "type:domain-logic"]
     },
-    "financial-domain": {
-      "tags": ["domain:financial", "type:domain-logic"]
-    },
     "news-feature-list": {
       "tags": ["domain:news", "type:feature"]
-    },
-    "financial-feature-list": {
-      "tags": ["domain:financial", "type:feature"]
     },
     "shared-ui-ui-blog": {
       "tags": ["domain:shared", "type:ui"]
@@ -99,6 +96,12 @@
     },
     "shared-util-util-tools": {
       "tags": ["domain:shared", "type:util"]
+    },
+    "user-domain": {
+      "tags": ["domain:user", "type:domain-logic"]
+    },
+    "user-feature-home-list": {
+      "tags": ["domain:user", "type:feature"]
     }
   }
 }

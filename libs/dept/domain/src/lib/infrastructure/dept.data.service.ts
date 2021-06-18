@@ -9,25 +9,24 @@ export class DeptDataService {
 
   load(): Observable<Dept[]> {
     // Uncomment if needed
-    /*
-        const url = '...';
-        const params = new HttpParams().set('param', 'value');
-        const headers = new HttpHeaders().set('Accept', 'application/json');
-        return this.http.get<Dept[]>(url, {params, headers});
-        */
 
-    return of([
-      { id: 1, name: 'PD', description: '产品研发' },
-      {
-        id: 2,
-        name: 'PMO',
-        description: '项目管理',
-      },
-      {
-        id: 3,
-        name: 'MS',
-        description: '市场销售',
-      },
-    ]);
+    const url = '/api/depts';
+    const params = new HttpParams().set('param', 'value');
+    const headers = new HttpHeaders().set('Accept', 'application/json');
+    return this.http.get<Dept[]>(url, { params, headers });
+
+    // return of([
+    //   { id: 1, name: 'PD', description: '产品研发' },
+    //   {
+    //     id: 2,
+    //     name: 'PMO',
+    //     description: '项目管理',
+    //   },
+    //   {
+    //     id: 3,
+    //     name: 'MS',
+    //     description: '市场销售',
+    //   },
+    // ]);
   }
 }

@@ -1,12 +1,20 @@
 {
   "version": 1,
-  "cli": { "defaultCollection": "@nrwl/angular" },
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
   "defaultProject": "management",
   "schematics": {
     "@nrwl/angular": {
-      "application": { "linter": "eslint" },
-      "library": { "linter": "eslint" },
-      "storybook-configuration": { "linter": "eslint" }
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
     },
     "@nrwl/angular:application": {
       "style": "scss",
@@ -19,9 +27,225 @@
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
-    "@nrwl/angular:component": { "style": "scss" }
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
   },
   "projects": {
+    "background-rest": {
+      "root": "apps/background-rest",
+      "sourceRoot": "apps/background-rest/src",
+      "projectType": "application",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/background-rest",
+            "main": "apps/background-rest/src/main.ts",
+            "tsConfig": "apps/background-rest/tsconfig.app.json",
+            "assets": ["apps/background-rest/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/background-rest/src/environments/environment.ts",
+                  "with": "apps/background-rest/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "background-rest:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/background-rest/**/*.ts"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/background-rest"],
+          "options": {
+            "jestConfig": "apps/background-rest/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "dept-domain": {
+      "projectType": "library",
+      "root": "libs/dept/domain",
+      "sourceRoot": "libs/dept/domain/src",
+      "prefix": "dept",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/dept/domain"],
+          "options": {
+            "project": "libs/dept/domain/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/dept/domain/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/dept/domain/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dept/domain"],
+          "options": {
+            "jestConfig": "libs/dept/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/dept/domain/src/**/*.ts",
+              "libs/dept/domain/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "dept-feature-home-list": {
+      "projectType": "library",
+      "root": "libs/dept/feature-home-list",
+      "sourceRoot": "libs/dept/feature-home-list/src",
+      "prefix": "dept",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/dept/feature-home-list"],
+          "options": {
+            "project": "libs/dept/feature-home-list/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/dept/feature-home-list/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/dept/feature-home-list/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dept/feature-home-list"],
+          "options": {
+            "jestConfig": "libs/dept/feature-home-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/dept/feature-home-list/src/**/*.ts",
+              "libs/dept/feature-home-list/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "financial-domain": {
+      "projectType": "library",
+      "root": "libs/financial/domain",
+      "sourceRoot": "libs/financial/domain/src",
+      "prefix": "financial",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/financial/domain"],
+          "options": {
+            "project": "libs/financial/domain/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/financial/domain/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/financial/domain/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/financial/domain"],
+          "options": {
+            "jestConfig": "libs/financial/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/financial/domain/src/**/*.ts",
+              "libs/financial/domain/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "financial-feature-list": {
+      "projectType": "library",
+      "root": "libs/financial/feature-list",
+      "sourceRoot": "libs/financial/feature-list/src",
+      "prefix": "financial",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/financial/feature-list"],
+          "options": {
+            "project": "libs/financial/feature-list/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/financial/feature-list/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/financial/feature-list/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/financial/feature-list"],
+          "options": {
+            "jestConfig": "libs/financial/feature-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/financial/feature-list/src/**/*.ts",
+              "libs/financial/feature-list/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "management": {
       "projectType": "application",
       "root": "apps/management",
@@ -95,13 +319,16 @@
           },
           "defaultConfiguration": "development",
           "options": {
+            "proxyConfig": "apps/management/proxy.conf.json",
             "extraWebpackConfig": "apps/management/webpack.config.js",
             "port": 4200
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": { "browserTarget": "management:build" }
+          "options": {
+            "browserTarget": "management:build"
+          }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -136,128 +363,15 @@
             "devServerTarget": "management:serve:development"
           },
           "configurations": {
-            "production": { "devServerTarget": "management:serve:production" }
+            "production": {
+              "devServerTarget": "management:serve:production"
+            }
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/management-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "user-domain": {
-      "projectType": "library",
-      "root": "libs/user/domain",
-      "sourceRoot": "libs/user/domain/src",
-      "prefix": "user",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/user/domain"],
-          "options": { "project": "libs/user/domain/ng-package.json" },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/user/domain/tsconfig.lib.prod.json"
-            },
-            "development": { "tsConfig": "libs/user/domain/tsconfig.lib.json" }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/user/domain"],
-          "options": {
-            "jestConfig": "libs/user/domain/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/user/domain/src/**/*.ts",
-              "libs/user/domain/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "dept-domain": {
-      "projectType": "library",
-      "root": "libs/dept/domain",
-      "sourceRoot": "libs/dept/domain/src",
-      "prefix": "dept",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/dept/domain"],
-          "options": { "project": "libs/dept/domain/ng-package.json" },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/dept/domain/tsconfig.lib.prod.json"
-            },
-            "development": { "tsConfig": "libs/dept/domain/tsconfig.lib.json" }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/dept/domain"],
-          "options": {
-            "jestConfig": "libs/dept/domain/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/dept/domain/src/**/*.ts",
-              "libs/dept/domain/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
-    "user-feature-home-list": {
-      "projectType": "library",
-      "root": "libs/user/feature-home-list",
-      "sourceRoot": "libs/user/feature-home-list/src",
-      "prefix": "user",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/user/feature-home-list"],
-          "options": {
-            "project": "libs/user/feature-home-list/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/user/feature-home-list/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/user/feature-home-list/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/user/feature-home-list"],
-          "options": {
-            "jestConfig": "libs/user/feature-home-list/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/user/feature-home-list/src/**/*.ts",
-              "libs/user/feature-home-list/src/**/*.html"
-            ]
           }
         }
       }
@@ -332,13 +446,16 @@
           },
           "defaultConfiguration": "development",
           "options": {
+            "proxyConfig": "apps/mobile/proxy.conf.json",
             "extraWebpackConfig": "apps/mobile/webpack.config.js",
             "port": 4201
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": { "browserTarget": "mobile:build" }
+          "options": {
+            "browserTarget": "mobile:build"
+          }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -373,52 +490,15 @@
             "devServerTarget": "mobile:serve:development"
           },
           "configurations": {
-            "production": { "devServerTarget": "mobile:serve:production" }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": { "lintFilePatterns": ["apps/mobile-e2e/**/*.{js,ts}"] }
-        }
-      }
-    },
-    "dept-feature-home-list": {
-      "projectType": "library",
-      "root": "libs/dept/feature-home-list",
-      "sourceRoot": "libs/dept/feature-home-list/src",
-      "prefix": "dept",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/dept/feature-home-list"],
-          "options": {
-            "project": "libs/dept/feature-home-list/ng-package.json"
-          },
-          "configurations": {
             "production": {
-              "tsConfig": "libs/dept/feature-home-list/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/dept/feature-home-list/tsconfig.lib.json"
+              "devServerTarget": "mobile:serve:production"
             }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/dept/feature-home-list"],
-          "options": {
-            "jestConfig": "libs/dept/feature-home-list/jest.config.js",
-            "passWithNoTests": true
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": [
-              "libs/dept/feature-home-list/src/**/*.ts",
-              "libs/dept/feature-home-list/src/**/*.html"
-            ]
+            "lintFilePatterns": ["apps/mobile-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -432,12 +512,16 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/news/domain"],
-          "options": { "project": "libs/news/domain/ng-package.json" },
+          "options": {
+            "project": "libs/news/domain/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/news/domain/tsconfig.lib.prod.json"
             },
-            "development": { "tsConfig": "libs/news/domain/tsconfig.lib.json" }
+            "development": {
+              "tsConfig": "libs/news/domain/tsconfig.lib.json"
+            }
           },
           "defaultConfiguration": "production"
         },
@@ -460,45 +544,6 @@
         }
       }
     },
-    "financial-domain": {
-      "projectType": "library",
-      "root": "libs/financial/domain",
-      "sourceRoot": "libs/financial/domain/src",
-      "prefix": "financial",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/financial/domain"],
-          "options": { "project": "libs/financial/domain/ng-package.json" },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/financial/domain/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/financial/domain/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/financial/domain"],
-          "options": {
-            "jestConfig": "libs/financial/domain/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/financial/domain/src/**/*.ts",
-              "libs/financial/domain/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "news-feature-list": {
       "projectType": "library",
       "root": "libs/news/feature-list",
@@ -508,7 +553,9 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/news/feature-list"],
-          "options": { "project": "libs/news/feature-list/ng-package.json" },
+          "options": {
+            "project": "libs/news/feature-list/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/news/feature-list/tsconfig.lib.prod.json"
@@ -538,47 +585,6 @@
         }
       }
     },
-    "financial-feature-list": {
-      "projectType": "library",
-      "root": "libs/financial/feature-list",
-      "sourceRoot": "libs/financial/feature-list/src",
-      "prefix": "financial",
-      "architect": {
-        "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/financial/feature-list"],
-          "options": {
-            "project": "libs/financial/feature-list/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/financial/feature-list/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/financial/feature-list/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/financial/feature-list"],
-          "options": {
-            "jestConfig": "libs/financial/feature-list/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/financial/feature-list/src/**/*.ts",
-              "libs/financial/feature-list/src/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "shared-ui-ui-blog": {
       "projectType": "library",
       "root": "libs/shared/ui/ui-blog",
@@ -588,7 +594,9 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-blog"],
-          "options": { "project": "libs/shared/ui/ui-blog/ng-package.json" },
+          "options": {
+            "project": "libs/shared/ui/ui-blog/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-blog/tsconfig.lib.prod.json"
@@ -627,7 +635,9 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-contact"],
-          "options": { "project": "libs/shared/ui/ui-contact/ng-package.json" },
+          "options": {
+            "project": "libs/shared/ui/ui-contact/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-contact/tsconfig.lib.prod.json"
@@ -666,7 +676,9 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-content"],
-          "options": { "project": "libs/shared/ui/ui-content/ng-package.json" },
+          "options": {
+            "project": "libs/shared/ui/ui-content/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-content/tsconfig.lib.prod.json"
@@ -705,7 +717,9 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-cta"],
-          "options": { "project": "libs/shared/ui/ui-cta/ng-package.json" },
+          "options": {
+            "project": "libs/shared/ui/ui-cta/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-cta/tsconfig.lib.prod.json"
@@ -744,7 +758,9 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-gallery"],
-          "options": { "project": "libs/shared/ui/ui-gallery/ng-package.json" },
+          "options": {
+            "project": "libs/shared/ui/ui-gallery/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-gallery/tsconfig.lib.prod.json"
@@ -783,7 +799,9 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-hero"],
-          "options": { "project": "libs/shared/ui/ui-hero/ng-package.json" },
+          "options": {
+            "project": "libs/shared/ui/ui-hero/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-hero/tsconfig.lib.prod.json"
@@ -822,7 +840,9 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-layout"],
-          "options": { "project": "libs/shared/ui/ui-layout/ng-package.json" },
+          "options": {
+            "project": "libs/shared/ui/ui-layout/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-layout/tsconfig.lib.prod.json"
@@ -861,7 +881,9 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-pricing"],
-          "options": { "project": "libs/shared/ui/ui-pricing/ng-package.json" },
+          "options": {
+            "project": "libs/shared/ui/ui-pricing/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-pricing/tsconfig.lib.prod.json"
@@ -982,7 +1004,9 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/util/util-d3"],
-          "options": { "project": "libs/shared/util/util-d3/ng-package.json" },
+          "options": {
+            "project": "libs/shared/util/util-d3/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/util/util-d3/tsconfig.lib.prod.json"
@@ -1021,7 +1045,9 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/util/util-pdf"],
-          "options": { "project": "libs/shared/util/util-pdf/ng-package.json" },
+          "options": {
+            "project": "libs/shared/util/util-pdf/ng-package.json"
+          },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/util/util-pdf/tsconfig.lib.prod.json"
@@ -1128,6 +1154,88 @@
             "lintFilePatterns": [
               "libs/shared/util/util-tools/src/**/*.ts",
               "libs/shared/util/util-tools/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "user-domain": {
+      "projectType": "library",
+      "root": "libs/user/domain",
+      "sourceRoot": "libs/user/domain/src",
+      "prefix": "user",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/user/domain"],
+          "options": {
+            "project": "libs/user/domain/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/user/domain/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/user/domain/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/user/domain"],
+          "options": {
+            "jestConfig": "libs/user/domain/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/user/domain/src/**/*.ts",
+              "libs/user/domain/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "user-feature-home-list": {
+      "projectType": "library",
+      "root": "libs/user/feature-home-list",
+      "sourceRoot": "libs/user/feature-home-list/src",
+      "prefix": "user",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/user/feature-home-list"],
+          "options": {
+            "project": "libs/user/feature-home-list/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/user/feature-home-list/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/user/feature-home-list/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/user/feature-home-list"],
+          "options": {
+            "jestConfig": "libs/user/feature-home-list/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/user/feature-home-list/src/**/*.ts",
+              "libs/user/feature-home-list/src/**/*.html"
             ]
           }
         }

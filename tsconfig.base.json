@@ -15,23 +15,19 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@biomind-platform/user/domain": ["libs/user/domain/src/index.ts"],
       "@biomind-platform/dept/domain": ["libs/dept/domain/src/index.ts"],
-      "@biomind-platform/user/feature-home-list": [
-        "libs/user/feature-home-list/src/index.ts"
-      ],
       "@biomind-platform/dept/feature-home-list": [
         "libs/dept/feature-home-list/src/index.ts"
       ],
-      "@biomind-platform/news/domain": ["libs/news/domain/src/index.ts"],
       "@biomind-platform/financial/domain": [
         "libs/financial/domain/src/index.ts"
       ],
-      "@biomind-platform/news/feature-list": [
-        "libs/news/feature-list/src/index.ts"
-      ],
       "@biomind-platform/financial/feature-list": [
         "libs/financial/feature-list/src/index.ts"
+      ],
+      "@biomind-platform/news/domain": ["libs/news/domain/src/index.ts"],
+      "@biomind-platform/news/feature-list": [
+        "libs/news/feature-list/src/index.ts"
       ],
       "@biomind-platform/shared/ui/ui-blog": [
         "libs/shared/ui/ui-blog/src/index.ts"
@@ -74,6 +70,10 @@
       ],
       "@biomind-platform/shared/util/util-tools": [
         "libs/shared/util/util-tools/src/index.ts"
+      ],
+      "@biomind-platform/user/domain": ["libs/user/domain/src/index.ts"],
+      "@biomind-platform/user/feature-home-list": [
+        "libs/user/feature-home-list/src/index.ts"
       ]
     }
   },
