@@ -1,20 +1,12 @@
 {
   "version": 1,
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
+  "cli": { "defaultCollection": "@nrwl/angular" },
   "defaultProject": "management",
   "schematics": {
     "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
-      },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
+      "application": { "linter": "eslint" },
+      "library": { "linter": "eslint" },
+      "storybook-configuration": { "linter": "eslint" }
     },
     "@nrwl/angular:application": {
       "style": "scss",
@@ -27,9 +19,7 @@
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
-    "@nrwl/angular:component": {
-      "style": "scss"
-    }
+    "@nrwl/angular:component": { "style": "scss" }
   },
   "projects": {
     "management": {
@@ -39,7 +29,7 @@
       "prefix": "biomind-platform",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/management",
@@ -53,7 +43,9 @@
               "apps/management/src/assets"
             ],
             "styles": ["apps/management/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "apps/management/webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -75,7 +67,8 @@
                   "with": "apps/management/src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/management/webpack.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -89,23 +82,26 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "management:build:production"
+              "browserTarget": "management:build:production",
+              "extraWebpackConfig": "apps/management/webpack.prod.config.js"
             },
             "development": {
               "browserTarget": "management:build:development",
               "open": true
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "extraWebpackConfig": "apps/management/webpack.config.js",
+            "port": 4200
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "management:build"
-          }
+          "options": { "browserTarget": "management:build" }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -117,11 +113,12 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "ngx-build-plus:karma",
           "outputs": ["coverage/apps/management"],
           "options": {
             "jestConfig": "apps/management/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/management/webpack.config.js"
           }
         }
       }
@@ -139,9 +136,7 @@
             "devServerTarget": "management:serve:development"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "management:serve:production"
-            }
+            "production": { "devServerTarget": "management:serve:production" }
           }
         },
         "lint": {
@@ -161,16 +156,12 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/user/domain"],
-          "options": {
-            "project": "libs/user/domain/ng-package.json"
-          },
+          "options": { "project": "libs/user/domain/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/user/domain/tsconfig.lib.prod.json"
             },
-            "development": {
-              "tsConfig": "libs/user/domain/tsconfig.lib.json"
-            }
+            "development": { "tsConfig": "libs/user/domain/tsconfig.lib.json" }
           },
           "defaultConfiguration": "production"
         },
@@ -202,16 +193,12 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/dept/domain"],
-          "options": {
-            "project": "libs/dept/domain/ng-package.json"
-          },
+          "options": { "project": "libs/dept/domain/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/dept/domain/tsconfig.lib.prod.json"
             },
-            "development": {
-              "tsConfig": "libs/dept/domain/tsconfig.lib.json"
-            }
+            "development": { "tsConfig": "libs/dept/domain/tsconfig.lib.json" }
           },
           "defaultConfiguration": "production"
         },
@@ -282,7 +269,7 @@
       "prefix": "biomind-platform",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/mobile",
@@ -293,7 +280,9 @@
             "inlineStyleLanguage": "scss",
             "assets": ["apps/mobile/src/favicon.ico", "apps/mobile/src/assets"],
             "styles": ["apps/mobile/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "apps/mobile/webpack.config.js",
+            "commonChunk": false
           },
           "configurations": {
             "production": {
@@ -315,7 +304,8 @@
                   "with": "apps/mobile/src/environments/environment.prod.ts"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extraWebpackConfig": "apps/mobile/webpack.prod.config.js"
             },
             "development": {
               "buildOptimizer": false,
@@ -329,22 +319,26 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "mobile:build:production"
+              "browserTarget": "mobile:build:production",
+              "extraWebpackConfig": "apps/mobile/webpack.prod.config.js"
             },
             "development": {
-              "browserTarget": "mobile:build:development"
+              "browserTarget": "mobile:build:development",
+              "open": true
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "extraWebpackConfig": "apps/mobile/webpack.config.js",
+            "port": 4201
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "mobile:build"
-          }
+          "options": { "browserTarget": "mobile:build" }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
@@ -356,11 +350,12 @@
           }
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "builder": "ngx-build-plus:karma",
           "outputs": ["coverage/apps/mobile"],
           "options": {
             "jestConfig": "apps/mobile/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "extraWebpackConfig": "apps/mobile/webpack.config.js"
           }
         }
       }
@@ -378,16 +373,12 @@
             "devServerTarget": "mobile:serve:development"
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "mobile:serve:production"
-            }
+            "production": { "devServerTarget": "mobile:serve:production" }
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/mobile-e2e/**/*.{js,ts}"]
-          }
+          "options": { "lintFilePatterns": ["apps/mobile-e2e/**/*.{js,ts}"] }
         }
       }
     },
@@ -441,16 +432,12 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/news/domain"],
-          "options": {
-            "project": "libs/news/domain/ng-package.json"
-          },
+          "options": { "project": "libs/news/domain/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/news/domain/tsconfig.lib.prod.json"
             },
-            "development": {
-              "tsConfig": "libs/news/domain/tsconfig.lib.json"
-            }
+            "development": { "tsConfig": "libs/news/domain/tsconfig.lib.json" }
           },
           "defaultConfiguration": "production"
         },
@@ -482,9 +469,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/financial/domain"],
-          "options": {
-            "project": "libs/financial/domain/ng-package.json"
-          },
+          "options": { "project": "libs/financial/domain/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/financial/domain/tsconfig.lib.prod.json"
@@ -523,9 +508,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/news/feature-list"],
-          "options": {
-            "project": "libs/news/feature-list/ng-package.json"
-          },
+          "options": { "project": "libs/news/feature-list/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/news/feature-list/tsconfig.lib.prod.json"
@@ -605,9 +588,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-blog"],
-          "options": {
-            "project": "libs/shared/ui/ui-blog/ng-package.json"
-          },
+          "options": { "project": "libs/shared/ui/ui-blog/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-blog/tsconfig.lib.prod.json"
@@ -646,9 +627,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-contact"],
-          "options": {
-            "project": "libs/shared/ui/ui-contact/ng-package.json"
-          },
+          "options": { "project": "libs/shared/ui/ui-contact/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-contact/tsconfig.lib.prod.json"
@@ -687,9 +666,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-content"],
-          "options": {
-            "project": "libs/shared/ui/ui-content/ng-package.json"
-          },
+          "options": { "project": "libs/shared/ui/ui-content/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-content/tsconfig.lib.prod.json"
@@ -728,9 +705,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-cta"],
-          "options": {
-            "project": "libs/shared/ui/ui-cta/ng-package.json"
-          },
+          "options": { "project": "libs/shared/ui/ui-cta/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-cta/tsconfig.lib.prod.json"
@@ -769,9 +744,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-gallery"],
-          "options": {
-            "project": "libs/shared/ui/ui-gallery/ng-package.json"
-          },
+          "options": { "project": "libs/shared/ui/ui-gallery/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-gallery/tsconfig.lib.prod.json"
@@ -810,9 +783,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-hero"],
-          "options": {
-            "project": "libs/shared/ui/ui-hero/ng-package.json"
-          },
+          "options": { "project": "libs/shared/ui/ui-hero/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-hero/tsconfig.lib.prod.json"
@@ -851,9 +822,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-layout"],
-          "options": {
-            "project": "libs/shared/ui/ui-layout/ng-package.json"
-          },
+          "options": { "project": "libs/shared/ui/ui-layout/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-layout/tsconfig.lib.prod.json"
@@ -892,9 +861,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui/ui-pricing"],
-          "options": {
-            "project": "libs/shared/ui/ui-pricing/ng-package.json"
-          },
+          "options": { "project": "libs/shared/ui/ui-pricing/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/ui/ui-pricing/tsconfig.lib.prod.json"
@@ -1015,9 +982,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/util/util-d3"],
-          "options": {
-            "project": "libs/shared/util/util-d3/ng-package.json"
-          },
+          "options": { "project": "libs/shared/util/util-d3/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/util/util-d3/tsconfig.lib.prod.json"
@@ -1056,9 +1021,7 @@
         "build": {
           "builder": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/util/util-pdf"],
-          "options": {
-            "project": "libs/shared/util/util-pdf/ng-package.json"
-          },
+          "options": { "project": "libs/shared/util/util-pdf/ng-package.json" },
           "configurations": {
             "production": {
               "tsConfig": "libs/shared/util/util-pdf/tsconfig.lib.prod.json"
