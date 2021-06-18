@@ -36,11 +36,12 @@
       "tags": ["domain:user", "type:feature"]
     },
     "mobile": {
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["management"]
     },
     "mobile-e2e": {
       "tags": [],
-      "implicitDependencies": []
+      "implicitDependencies": ["mobile"]
     },
     "dept-feature-home-list": {
       "tags": ["domain:dept", "type:feature"]
